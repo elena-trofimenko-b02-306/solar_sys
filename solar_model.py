@@ -22,9 +22,9 @@ def calculate_force(body, space_objects):
             continue  # тело не действует гравитационной силой на само себя!
         r = ((body.x - obj.x)**2 + (body.y - obj.y)**2)**0.5
         #r = max(r, body.R)
-        if r<=body.R+obj.R:
-            body.Vx=((body.Vx**2+body.Vy**2)**0.5)*((body.x-obj.x)/r)
-            body.Vy=((body.Vx**2+body.Vy**2)**0.5)*((body.y-obj.y)/r)
+        """if r<=(body.R+obj.R):
+            body.Vx=0.5*((body.Vx**2+body.Vy**2)**0.5)*((body.x-obj.x)/r)
+            body.Vy=0.5*((body.Vx**2+body.Vy**2)**0.5)*((body.y-obj.y)/r)"""
         body.Fx += -1*(float(gravitational_constant)*obj.m*body.m*((body.x-obj.x)/r))/r**2
         body.Fy += -1*(float(gravitational_constant)*obj.m*body.m*((body.y-obj.y)/r))/r**2
 
