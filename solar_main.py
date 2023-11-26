@@ -1,14 +1,13 @@
 # coding: utf-8
 # license: GPLv3
-
-import pygame as pg
+from solar_input1 import *
 from solar_vis import *
 from solar_model import *
-from solar_input import *
-from solar_objects import *
+import pygame as pg
 import thorpy
 import time
 import numpy as np
+
 
 timer = None
 
@@ -21,7 +20,7 @@ model_time = 0
 """Физическое время от начала расчёта.
 Тип: float"""
 
-time_scale = 1000.0
+time_scale = 1000000000.0
 """Шаг по времени при моделировании.
 Тип: float"""
 
@@ -81,7 +80,7 @@ def handle_events(events, menu):
             alive = False
 
 def slider_to_real(val):
-    return np.exp(5 + val)
+    return np.exp(5 + 2*val)
 
 def slider_reaction(event):
     global time_scale
@@ -116,7 +115,7 @@ def init_ui(screen):
     for element in menu.get_population():
         element.surface = screen
 
-    box.set_topleft((0,0))
+    box.set_topleft((0,10))
     box.blit()
     box.update()
     return menu, box, timer
@@ -161,6 +160,7 @@ def main():
         time.sleep(1.0 / 60)
 
     print('Modelling finished!')
+
 
 if __name__ == "__main__":
     main()
